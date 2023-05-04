@@ -1,0 +1,20 @@
+#!/bin/bash
+echo "Скрипт регистрации нового пользователя"
+echo "Введите имя нового пользователя"
+read name
+echo "Введите пароль нового пользователя"
+read -s pass
+echo "Введите имя и фамилию нового пользователя либо комментарий для новой учетной записи"
+read comment
+useradd -c "$comment" -d /home/$name -U -m -s /bin/bash $name
+echo "$name:$pass" | chpasswd
+echo "Новая учетная запись создана"
+echo "Учетная запись будет с правами root? (y\n)"
+read root
+if [ $root = "y" ];
+then
+usermod -aG sudo $name
+echo "Привилегии SU активированы для $name"
+else
+echo "Done"
+fi

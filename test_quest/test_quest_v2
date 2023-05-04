@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+mkdir -p temp
+tmp=$(pwd)/temp
+wget --directory-prefix=$tmp https://raw.githubusercontent.com/GreatMedivack/files/master/list.out
+run=$(grep "Running" $tmp/list.out | wc -l)
+err=$(grep "Error" $tmp/list.out | wc -l)
+crs=$(grep "CrashLoopBackOff" $tmp/list.out | wc -l)
+cml=$(grep "Completed" $tmp/list.out | wc -l)
+
+if      [ "$1" = "" ];
+then
+	echo "$run servers is Running"
+	echo "$err servers is Error"
+	echo "$crs servers is CrashLoopBackOff"
+	echo "$cml servers is Completed"
+		grep "Running" $tmp/list.out | awk '{print $1}'  > $tmp/server_$(date +%d_%m_%Y)_running.out
+		grep "Error" $tmp/list.out | awk '{print $1}' > $tmp/server_$(date +%d_%m_%Y)_failed.out
+		grep "CrashLoopBackOff" $tmp/list.out | awk '{print $1}' >> $tmp/server_$(date +%d_%m_%Y)_failed.out
+	echo "Для поиска статуса конкретного сервера выполните скрипт передав ему имя сервера в формате \"$0 server_name\" где \"sever_name\" - имя искомого сервера"
+else
+	echo "Поиск статуса сервера $1"
+		grep -i "$1" $tmp/list.out | grep -i "running"
+	if	[ "$?" = "0" ];
+	then
+	echo "$1" > $tmp/$1_$(date +%d_%m_%Y)_running.out
+	fi
+		grep -i "$1" $tmp/list.out | grep -i "Error"
+	if	[ "$?" = "0" ];
+	then
+		echo "$1" > $tmp/$1_$(date +%d_%m_%Y)_failed.out
+	fi
+		grep -i "$1" $tmp/list.out | grep -i "CrashLoopBackOff"
+	if	[ "$?" = "0" ];
+	then
+		echo "$1" > $tmp/$1_$(date +%d_%m_%Y)_failed.out
+	fi
+		grep -i "$1" $tmp/list.out | grep -i "Completed"
+	if	[ "$?" = "0" ];
+	then	echo "Status $1 is "Completed""
+	fi
+fi
+touch $tmp/SERVER_$(date +%d_%m_%Y)_report.out
+cat > $tmp/SERVER_$(date +%d_%m_%Y)_report.out <<EOF
+Количество работающих сервисов: $(cat $tmp/server_$(date +%d_%m_%Y)_running.out | wc -l)
+Количество сервисов с ошибками: $(cat $tmp/server_$(date +%d_%m_%Y)_failed.out | wc -l)
+Количество перезапустившихся сервисов: $(cat $tmp/list.out | awk '{print $4}' | grep -o [1-9]* | wc -l)
+Имя системного пользователя: $(whoami)
+Дата: $(date +%d/%m/%y)
+EOF
+chmod 444 $tmp/SERVER_$(date +%d_%m_%Y)_report.out
+mkdir -p $(pwd)/archives
+#zip $(pwd)/archives/SERVER_$(date +%d_%m_%Y) 
+#rm -rf $tmp
+#gzip $tmp/* > $(pwd)/archives/SERVER_$(date +%d_%m_%Y)
