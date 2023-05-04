@@ -1,0 +1,90 @@
+[
+    {
+        "orderAwaitingPaymentEvent": {
+            "orderID": "ae82a212-5030-4693-9e6e-7db4-de039522",
+            "stateFeeBills": [
+            {
+                "uin": "32167872703126332236",
+                "huita": "123-45",
+                "listDocs": {
+                    "ivn": "1234567890",
+                    "kkp": "123456789",
+                    "buk": "123456789",
+                    "bigNum": "12345678901234567890"                    
+                },
+                "recvID": "aa11bb22-cc33-dd44-ee55-ff66-deadbeef"
+            },
+            {
+                "uin": "32167872703201392229",
+                "huita": "123-45",
+                "listDocs": {
+                    "ivn": "1234567890",
+                    "kkp": "123456789",
+                    "buk": "123456789",
+                    "bigNum": "12345678901234567890"
+                },
+                "recvID": "aa11bb22-cc33-dd44-ee55-ff66-deadbeef"
+            },
+            {
+                "uin": "32167872703316322234",
+                "huita": "123-45",
+                "listDocs": {
+                    "ivn": "1234567890",
+                    "kkp": "123456789",
+                    "buk": "123456789",
+                    "bigNum": "12345678901234567890"
+                },
+                "recvID": "aa11bb22-cc33-dd44-ee55-ff66-deadbeef"
+            }
+            ],
+            "timeStamp": {
+                "dateStart": "01/01/1970",
+                "dateEnd": "19/01/2038"
+            }
+        }
+    },
+    {
+        "orderAwaitingPaymentEvent": {
+            "orderID": "ae82a215-3fb2-4693-9e6e-7db4-de039522",
+            "stateFeeBills": [
+            {
+                "uin": "32167872703116332226",
+                "huita": "123-45",
+                "listDocs": {
+                    "ivn": "1234567890",
+                    "kkp": "123456789",
+                    "buk": "123456789",
+                    "bigNum": "12345678901234567890"                    
+                },
+                "recvID": "aa11bb22-cc33-dd44-ee55-ff66-deadbeef"
+            },
+            {
+                "uin": "32167872703201392220",
+                "huita": "123-45",
+                "listDocs": {
+                    "ivn": "1234567890",
+                    "kkp": "123456789",
+                    "buk": "123456789",
+                    "bigNum": "12345678901234567890"
+                },
+                "recvID": "aa11bb22-cc33-dd44-ee55-ff66-deadbeef"
+            },
+            {
+                "uin": "32167872703316322224",
+                "huita": "123-45",
+                "listDocs": {
+                    "ivn": "1234567890",
+                    "kkp": "123456789",
+                    "buk": "123456789",
+                    "bigNum": "12345678901234567890"
+                },
+                "recvID": "aa11bb22-cc33-dd44-ee55-ff66-deadbeef"
+            }
+            ],
+            "timeStamp": {
+                "dateStart": "01/01/1970",
+                "dateEnd": "19/01/2038"
+            }
+        }
+    }
+]
