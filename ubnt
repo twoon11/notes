@@ -1,0 +1,2 @@
+# transmissin-daemon config file
+/var/lib/transmission-daemon/.config
