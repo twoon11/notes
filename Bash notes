@@ -1,0 +1,3 @@
+## Linux shell notes
+# Узнать размер всех папок (выоплить в корне диска)
+du -s *|sort -nr|cut -f 2-|while read a;do du -hs $a;done
