@@ -1,2 +1,13 @@
 # transmissin-daemon config file
 /var/lib/transmission-daemon/.config
+
+# Создать ssh ключ на клиенте
+ssh-keygen
+# id_rsa оставить на клиенте
+# id-rsc.pub скопировать на сервер:
+# Если на удаленной машине ssh работает на стандартном (22-ом) порту
+scp ~/.ssh/id_rsa.pub root@192.168.1.150:~/.ssh
+# Если на удаленной машине ssh работает на нестандартном порту (-P portnumber)
+scp -P portnumber ~/.ssh/id_rsa.pub root@192.168.1.150:~/.ssh
+# Добавить публичный ключ на клиенте
+ssh-add
