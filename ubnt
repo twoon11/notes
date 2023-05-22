@@ -1,7 +1,7 @@
-# transmissin-daemon config file
+## transmissin-daemon config file
 /var/lib/transmission-daemon/.config
 
-# Создать ssh ключ на клиенте
+## Создать ssh ключ на клиенте
 ssh-keygen
 # id_rsa оставить на клиенте
 # id-rsc.pub скопировать на сервер:
@@ -11,3 +11,16 @@ scp ~/.ssh/id_rsa.pub root@192.168.1.150:~/.ssh
 scp -P portnumber ~/.ssh/id_rsa.pub root@192.168.1.150:~/.ssh
 # Добавить публичный ключ на клиенте
 ssh-add
+
+## Добавить параметр к запуску ядра:
+#For GRUB:
+nano /etc/default/grub
+#Find the line with "GRUB_CMDLINE_LINUX_DEFAULT":
+# DFAULT: GRUB_CMDLINE_LINUX_DEFAULT="quiet"
+# Enable IOMMU:
+GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on"
+# Then save the changes and update grub:
+update-grub
+
+#For systemd-boot:
+nano /etc/kernel/cmdline (создать, если отсутствует)
