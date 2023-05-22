@@ -1,2 +1,0 @@
-# notes
-notes and scripts
